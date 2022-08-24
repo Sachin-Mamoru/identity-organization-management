@@ -18,6 +18,7 @@
 
 package org.wso2.carbon.identity.organization.management.application.dao;
 
+import org.wso2.carbon.identity.organization.management.application.model.MainApplicationDO;
 import org.wso2.carbon.identity.organization.management.application.model.SharedApplicationDO;
 import org.wso2.carbon.identity.organization.management.service.exception.OrganizationManagementException;
 
@@ -53,6 +54,17 @@ public interface OrgApplicationMgtDAO {
             throws OrganizationManagementException;
 
     /**
+     * Retrieve main application for a given shared application.
+     *
+     * @param sharedAppId Unique identifier of the shared application.
+     * @param sharedOrgId The unique ID of the organization, to whom the application is shared.
+     * @return {@link MainApplicationDO} for a given shared application.
+     * @throws OrganizationManagementException
+     */
+    Optional<MainApplicationDO> getMainApplication(String sharedAppId, String sharedOrgId)
+            throws OrganizationManagementException;
+
+    /**
      * Returns the unique identifier of the shared application.
      *
      * @param mainAppId   Main application identifier.
@@ -73,4 +85,6 @@ public interface OrgApplicationMgtDAO {
      *                                         of the application.
      */
     boolean hasFragments(String applicationId) throws OrganizationManagementException;
+
+
 }
